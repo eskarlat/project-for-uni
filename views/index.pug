@@ -1,0 +1,22 @@
+extends layout.pug
+
+block content
+    nav(class='navbar navbar-default')
+        div(class='container')
+            div(class='navbar-header')
+                a(class='navbar-brand') Phones Market
+            div(class='collapse navbar-collapse', id='bs-example-navbar-collapse-1')
+                ul(class='nav navbar-nav navbar-right')
+                    li
+                        a(href="/login") Login
+
+    div(class='container')
+        each phone in phones
+            div(class='col-md-4')
+                div(class='media item-phone')
+                    div(class='media-left')
+                        a(href='/')
+                            img(class='media-object item-image' src=phone.image alt='')
+                    div(class='media-body')
+                        h4(class='media-heading') #{phone.title}
+                        p #{phone.desc}
