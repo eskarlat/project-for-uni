@@ -1,0 +1,17 @@
+extends layout.pug
+
+block content
+
+    div(class='container')
+        h1 Edit #{phone.title}
+        form(method='post', action='/admin/phone/edit/'+ phone.id, class='form')
+            div(class='form-group')
+                input(type='text', name='title', placeholder='Enter title', class='form-control', value=phone.title)
+            div(class='form-group')
+                input(type='text', name='image', placeholder='Enter image', class='form-control' value=phone.image)
+            div(class='form-group')
+                input(type='text', name='description', placeholder='Enter description', class='form-control', value=phone.description)
+            div(class='form-group')
+                input(type='number', name='price', placeholder='Enter price', class='form-control', value=phone.price)
+            div(class='form-group')
+                button(type='submit', class='btn btn-primary') Edit
