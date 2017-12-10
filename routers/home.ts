@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as HomeController from '../controllers/HomeController';
-// import * as AuthController from '../controllers/AuthController';
+import * as AuthController from '../controllers/AuthController';
 
 export default (app) => {
 
@@ -9,7 +9,9 @@ export default (app) => {
     //Home routers
     apiRoutes.get('/', HomeController.index);
     apiRoutes.get('/phone/:id', HomeController.findById);
-    // apiRoutes.get('/login', AuthController.login);
+    apiRoutes.get('/login', AuthController.login);
+    apiRoutes.post('/auth', AuthController.auth);
+    apiRoutes.get('/logout', AuthController.logout);
 
     app.use('/', apiRoutes);
 }

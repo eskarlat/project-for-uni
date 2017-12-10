@@ -1,5 +1,9 @@
 import Phone from '../models/Phone';
 
+export function index(req, res, next) {
+    res.render('admin');
+}
+
 //Create Phone
 export function create(req, res, next) {
     let phone = new Phone({
