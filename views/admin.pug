@@ -1,4 +1,19 @@
 extends layout.pug
 
 block content
-    h1 admin panel
+    div(class='container')
+        h1 Admin panel
+
+        a(href='admin/phone/create', class='btn btn-primary mb10') Create new phone
+
+        ul(class="list-group")
+            each phone in phones
+                li(class="list-group-item")
+                    div(class='media item-phone')
+                        div(class='media-left')
+                            img(class='media-object item-image' src=phone.image alt='')
+                        div(class='media-body')
+                            h4(class='media-heading') #{phone.title}
+                            p #{phone.description}
+                            a(href='/admin/phone/edit/' + phone.id, class='btn btn-default') Edit
+                            a(href='/admin/phone/delete/' + phone.id, class='btn btn-danger') Delete

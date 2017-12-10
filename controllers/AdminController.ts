@@ -1,7 +1,13 @@
 import Phone from '../models/Phone';
 
 export function index(req, res, next) {
-    res.render('admin');
+    Phone.find()
+        .then(phones => {
+            res.render('admin', { phones });
+        })
+        .catch(error => {
+            res.render('error', { error });
+        })
 }
 
 //Create Phone
