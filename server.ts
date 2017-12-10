@@ -7,7 +7,7 @@ import * as cors from 'cors';
 import * as helmet from 'helmet';
 import config from './config/main';
 import home from './routers/home';
-// import admin from './routers/admin';
+import admin from './routers/admin';
 
 
 const app = express();
@@ -23,7 +23,7 @@ app.use(cors());
 app.set('view engine', 'pug');
 
 home(app);
-//admin(app);
+admin(app);
 
 let server = app.listen(config.port, function () {
     console.log('server start on ' + config.port + 'port');
