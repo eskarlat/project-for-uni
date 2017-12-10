@@ -5,10 +5,10 @@ import * as cookieParser from 'cookie-parser';
 import * as logger from 'morgan';
 import * as cors from 'cors';
 import * as helmet from 'helmet';
+import * as session from 'express-session';
 import config from './config/main';
 import home from './routers/home';
 import admin from './routers/admin';
-
 
 const app = express();
 
@@ -21,6 +21,11 @@ app.use(logger('dev'));
 app.use(helmet());
 app.use(cors());
 app.set('view engine', 'pug');
+app.use(session({ secret: 'keyboard cat' }));
+
+app.locals = {
+    isAuth: false
+};
 
 home(app);
 admin(app);
