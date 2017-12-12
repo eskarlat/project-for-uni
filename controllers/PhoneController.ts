@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import Phone from '../models/Phone';
 
 export function edit(req, res, next) {
@@ -17,7 +18,16 @@ export function create(req, res, next) {
 }
 
 export function store(req, res, next) {
-    let phone = new Phone(req.body);
+    let body = {
+        title: req.body.title,
+        description: req.body.description,
+        price: req.body.price,
+    };
+
+    let phone = new Phone(body);
+
+    phone.image.data = fs.readFileSync(req.file.path, 'base64');
+    phone.image.contentType = 'image/jpeg';
 
     phone.save()
         .then(result => {
@@ -31,7 +41,15 @@ export function store(req, res, next) {
 export function update(req, res, next) {
     const id = req.params.id;
 
-    const body = req.body;
+    let body = {
+        title: req.body.title,
+        description: req.body.description,
+        price: req.body.price,
+        image: {
+            data: fs.readFileSync(req.file.path, 'base64'),
+            contentType: 'image/jpeg'
+        }
+    };
 
     Phone.findById(id)
         .then(phone => {

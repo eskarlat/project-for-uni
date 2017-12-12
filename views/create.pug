@@ -3,12 +3,13 @@ extends layout.pug
 block content
 
     div(class='container')
+        a(href='/admin', class='btn btn-primary mb10') back to menu
         h1 Create
-        form(method='post', action='/admin/phone/create', class='form')
+        form(method='post', action='/admin/phone/create', class='form', enctype="multipart/form-data")
             div(class='form-group')
                 input(type='text', name='title', placeholder='Enter title', class='form-control')
             div(class='form-group')
-                input(type='text', name='image', placeholder='Enter image', class='form-control')
+                input(type='file', name='image', class='form-control')
             div(class='form-group')
                 input(type='text', name='description', placeholder='Enter description', class='form-control')
             div(class='form-group')

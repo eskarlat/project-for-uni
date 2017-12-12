@@ -1,5 +1,5 @@
-import * as mongoose from 'mongoose';
-// var mongoose = require('mongoose');
+// import * as mongoose from 'mongoose';
+var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PhoneSchema = new Schema({
@@ -9,9 +9,8 @@ const PhoneSchema = new Schema({
         required: true
     },
     image: {
-        type: String,
-        default: '',
-        required: true
+        data: Buffer,
+        contentType: String
     },
     description: {
         type: String,

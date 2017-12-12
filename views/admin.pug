@@ -11,7 +11,7 @@ block content
                 li(class="list-group-item")
                     div(class='media item-phone')
                         div(class='media-left')
-                            img(class='media-object item-image' src=phone.image alt='')
+                            img(class='media-object item-image' src='data:'+ phone.image.contentType +';base64,'+phone.image.data alt='')
                         div(class='media-body')
                             h4(class='media-heading') #{phone.title}
                             p #{phone.description}
