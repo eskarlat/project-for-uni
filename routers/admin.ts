@@ -14,7 +14,6 @@ export default (app) => {
 
     //Admin routers
     apiRoutes.get('/', AdminController.index);
-    apiRoutes.get('/create', AdminController.create);
     apiRoutes.get('/user/create', UserController._create);
     apiRoutes.get('/phone/edit/:id', PhoneController.edit);
     apiRoutes.post('/phone/edit/:id', PhoneController.update);
