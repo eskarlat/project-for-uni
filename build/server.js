@@ -8,6 +8,7 @@ var logger = require("morgan");
 var cors = require("cors");
 var helmet = require("helmet");
 var session = require("express-session");
+var multer = require("multer");
 var main_1 = require("./config/main");
 var home_1 = require("./routers/home");
 var admin_1 = require("./routers/admin");
@@ -21,6 +22,7 @@ app.use(helmet());
 app.use(cors());
 app.set('view engine', 'pug');
 app.use(session({ secret: 'keyboard cat' }));
+app.use(multer({ dest: './uploads/' }).single('image'));
 app.locals = {
     isAuth: false
 };

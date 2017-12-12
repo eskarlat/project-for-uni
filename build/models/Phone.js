@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var mongoose = require("mongoose");
-// var mongoose = require('mongoose');
+// import * as mongoose from 'mongoose';
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var PhoneSchema = new Schema({
     title: {
@@ -10,9 +10,8 @@ var PhoneSchema = new Schema({
         required: true
     },
     image: {
-        type: String,
-        default: '',
-        required: true
+        data: Buffer,
+        contentType: String
     },
     description: {
         type: String,

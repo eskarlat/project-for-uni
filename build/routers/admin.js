@@ -6,10 +6,11 @@ var UserController = require("../controllers/UserController");
 var PhoneController = require("../controllers/PhoneController");
 exports.default = function (app) {
     var apiRoutes = express.Router();
-    // apiRoutes.use(function (req, res, next) {
-    //     if(!req.session.auth) res.redirect('/');
-    //     next()
-    // });
+    apiRoutes.use(function (req, res, next) {
+        if (!req.session.auth)
+            res.redirect('/');
+        next();
+    });
     //Admin routers
     apiRoutes.get('/', AdminController.index);
     apiRoutes.get('/create', AdminController.create);

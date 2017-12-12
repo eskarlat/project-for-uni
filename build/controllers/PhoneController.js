@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var fs = require("fs");
 var Phone_1 = require("../models/Phone");
 function edit(req, res, next) {
     var id = req.params.id;
@@ -17,7 +18,14 @@ function create(req, res, next) {
 }
 exports.create = create;
 function store(req, res, next) {
-    var phone = new Phone_1.default(req.body);
+    var body = {
+        title: req.body.title,
+        description: req.body.description,
+        price: req.body.price,
+    };
+    var phone = new Phone_1.default(body);
+    phone.image.data = fs.readFileSync(req.file.path, 'base64');
+    phone.image.contentType = 'image/jpeg';
     phone.save()
         .then(function (result) {
         res.redirect('/admin');
@@ -29,7 +37,15 @@ function store(req, res, next) {
 exports.store = store;
 function update(req, res, next) {
     var id = req.params.id;
-    var body = req.body;
+    var body = {
+        title: req.body.title,
+        description: req.body.description,
+        price: req.body.price,
+        image: {
+            data: fs.readFileSync(req.file.path, 'base64'),
+            contentType: 'image/jpeg'
+        }
+    };
     Phone_1.default.findById(id)
         .then(function (phone) {
         phone.update(body, function (err, phone) {

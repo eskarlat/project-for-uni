@@ -8,7 +8,7 @@ block content
                 div(class='media item-phone')
                     div(class='media-left')
                         a(href='/phone/'+ phone.id)
-                            img(class='media-object item-image' src=phone.image alt='')
+                            img(class='media-object item-image' src='data:'+ phone.image.contentType +';base64,'+phone.image.data alt='')
                     div(class='media-body')
                         a(href='/phone/'+ phone.id)
                             h4(class='media-heading') #{phone.title}

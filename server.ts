@@ -6,6 +6,7 @@ import * as logger from 'morgan';
 import * as cors from 'cors';
 import * as helmet from 'helmet';
 import * as session from 'express-session';
+import * as multer from 'multer';
 import config from './config/main';
 import home from './routers/home';
 import admin from './routers/admin';
@@ -22,6 +23,8 @@ app.use(helmet());
 app.use(cors());
 app.set('view engine', 'pug');
 app.use(session({ secret: 'keyboard cat' }));
+
+app.use(multer({ dest: './uploads/'}).single('image'));
 
 app.locals = {
     isAuth: false
