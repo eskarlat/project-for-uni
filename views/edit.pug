@@ -3,17 +3,17 @@ extends layout.pug
 block content
 
     div(class='container')
-        a(href='/admin', class='btn btn-primary mb10') back to menu
-        h1 Edit #{phone.title}
-        img(class='media-object item-image mb10' src='data:'+ phone.image.contentType +';base64,'+phone.image.data alt='')
-        form(method='post', action='/admin/phone/edit/'+ phone.id, class='form', enctype="multipart/form-data")
+        a(href='/admin', class='btn btn-default mb10') back to menu
+        h1 Edit #{book.title}
+        img(class='media-object item-image mb10' src='data:'+ book.image.contentType +';base64,'+book.image.data alt='')
+        form(method='post', action='/admin/book/edit/'+ book.id, class='form', enctype="multipart/form-data")
             div(class='form-group')
-                input(type='text', name='title', placeholder='Enter title', class='form-control', value=phone.title)
+                input(type='text', name='title', placeholder='Enter title', class='form-control', value=book.title)
             div(class='form-group')
                 input(type='file', name='image', class='form-control')
             div(class='form-group')
-                input(type='text', name='description', placeholder='Enter description', class='form-control', value=phone.description)
+                textarea(name='description', class='form-control') #{book.description}
             div(class='form-group')
-                input(type='number', name='price', placeholder='Enter price', class='form-control', value=phone.price)
+                input(type='number', name='price', placeholder='Enter price', class='form-control', value=book.price)
             div(class='form-group')
                 button(type='submit', class='btn btn-primary') Edit

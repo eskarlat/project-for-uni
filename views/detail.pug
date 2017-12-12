@@ -3,14 +3,15 @@ extends layout.pug
 block content
 
     div(class='container')
-        a(href='/' class='btn btn-primary mb10') Back to main menu
-        div(class='panel panel-default')
+        a(href='/' class='btn btn-default mb10') Back
+        div(class='panel panel-primary')
             div(class='panel-heading')
-                h1(class='panel-title') #{phone.title}
+                h1(class='panel-title') #{book.title}
             div(class='panel-body')
                 div(class='col-md-4')
-                    img(src=phone.image)
+                    img(class='image-detail',src='data:'+ book.image.contentType +';base64,'+book.image.data)
                 div(class='col-md-8')
-                    h3 Info:
+                    h3 About book #{book.title}:
                     ul(class='list-group')
-                        li(class='list-group-item') #{phone.description}
+                        li(class='list-group-item') #{book.description}
+                        li(class='list-group-item') Price: $#{book.price}

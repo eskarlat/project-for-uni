@@ -7,7 +7,7 @@ exports.default = function (app) {
     var apiRoutes = express.Router();
     //Home routers
     apiRoutes.get('/', HomeController.index);
-    apiRoutes.get('/phone/:id', HomeController.findById);
+    apiRoutes.get('/book/:id', HomeController.findById);
     apiRoutes.get('/login', AuthController.login);
     apiRoutes.post('/auth', AuthController.auth);
     apiRoutes.get('/logout', AuthController.logout);

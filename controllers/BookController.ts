@@ -1,12 +1,12 @@
 import * as fs from 'fs';
-import Phone from '../models/Phone';
+import Book from '../models/Book';
 
 export function edit(req, res, next) {
     const id = req.params.id;
 
-    Phone.findById(id)
-        .then(phone => {
-            res.render('edit', { phone });
+    Book.findById(id)
+        .then(book => {
+            res.render('edit', { book });
         })
         .catch(error => {
             res.render('error', { error });
@@ -24,12 +24,12 @@ export function store(req, res, next) {
         price: req.body.price,
     };
 
-    let phone = new Phone(body);
+    let book = new Book(body);
 
-    phone.image.data = fs.readFileSync(req.file.path, 'base64');
-    phone.image.contentType = 'image/jpeg';
+    book.image.data = fs.readFileSync(req.file.path, 'base64');
+    book.image.contentType = 'image/jpeg';
 
-    phone.save()
+    book.save()
         .then(result => {
             res.redirect('/admin');
         })
@@ -51,9 +51,9 @@ export function update(req, res, next) {
         }
     };
 
-    Phone.findById(id)
-        .then(phone => {
-            phone.update(body, (err, phone) => {
+    Book.findById(id)
+        .then(book => {
+            book.update(body, (err, phone) => {
                 res.redirect('/admin');
             });
         })
@@ -65,9 +65,9 @@ export function update(req, res, next) {
 export function destroy (req, res, next) {
     const id = req.params.id;
 
-    Phone.findById(id)
-        .then(phone => {
-            phone.remove();
+    Book.findById(id)
+        .then(book => {
+            book.remove();
             res.redirect('/admin');
         })
         .catch(error => {

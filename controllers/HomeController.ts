@@ -1,10 +1,10 @@
-import Phone from '../models/Phone';
+import Book from '../models/Book';
 
 //index
 export function index(req, res, next) {
-    Phone.find()
-        .then(phones => {
-            res.render('index', { phones });
+    Book.find()
+        .then(books => {
+            res.render('index', { books });
         })
         .catch(error => {
             res.render('error', { error });
@@ -15,9 +15,9 @@ export function index(req, res, next) {
 export function findById(req, res, next) {
     const id = req.params.id;
 
-    Phone.findById(id)
-        .then(phone => {
-            res.render('detail', { phone });
+    Book.findById(id)
+        .then(book => {
+            res.render('detail', { book });
         })
         .catch( error => {
             res.render('error', { error });

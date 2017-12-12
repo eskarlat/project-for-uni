@@ -3,13 +3,16 @@ extends layout.pug
 block content
 
     div(class='container')
-        each phone in phones
+        h1 Books of University
+        hr
+        each book in books
             div(class='col-md-4')
-                div(class='media item-phone')
+                div(class='media item-book')
                     div(class='media-left')
-                        a(href='/phone/'+ phone.id)
-                            img(class='media-object item-image' src='data:'+ phone.image.contentType +';base64,'+phone.image.data alt='')
+                        a(href='/book/'+ book.id)
+                            img(class='media-object item-image' src='data:'+ book.image.contentType +';base64,'+book.image.data alt='')
                     div(class='media-body')
-                        a(href='/phone/'+ phone.id)
-                            h4(class='media-heading') #{phone.title}
-                        p #{phone.description}
+                        a(href='/book/'+ book.id)
+                            h4(class='media-heading') #{book.title}
+                        p #{book.description}
+                        a(href='/book/'+ book.id, class='btn btn-default') Read more

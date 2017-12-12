@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as AdminController from '../controllers/AdminController';
 import * as UserController from '../controllers/UserController';
-import * as PhoneController from '../controllers/PhoneController';
+import * as BookController from '../controllers/BookController';
 
 export default (app) => {
 
@@ -15,11 +15,11 @@ export default (app) => {
     //Admin routers
     apiRoutes.get('/', AdminController.index);
     apiRoutes.get('/user/create', UserController._create);
-    apiRoutes.get('/phone/edit/:id', PhoneController.edit);
-    apiRoutes.post('/phone/edit/:id', PhoneController.update);
-    apiRoutes.get('/phone/delete/:id', PhoneController.destroy);
-    apiRoutes.get('/phone/create', PhoneController.create);
-    apiRoutes.post('/phone/create', PhoneController.store);
+    apiRoutes.get('/book/edit/:id', BookController.edit);
+    apiRoutes.post('/book/edit/:id', BookController.update);
+    apiRoutes.get('/book/delete/:id', BookController.destroy);
+    apiRoutes.get('/book/create', BookController.create);
+    apiRoutes.post('/book/create', BookController.store);
 
     app.use('/admin', apiRoutes);
 }

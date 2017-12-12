@@ -2,10 +2,27 @@
     width: 125px;
 }
 
-.item-phone{
+.item-book{
     margin-bottom: 16px;
+    border: 1px solid #e2e2e2;
+    padding: 10px;
+    height: 276px;
 }
 
 .mb10{
     margin-bottom: 10px;
+}
+
+.navbar-inverse {
+    border-radius: 0px;
+}
+
+@media (min-width: 1200px) {
+    .login-form {
+        width: 500px;
+    }
+}
+
+.image-detail {
+    width: 300px;
 }

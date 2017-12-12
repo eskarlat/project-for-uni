@@ -2,18 +2,16 @@ extends layout.pug
 
 block content
     div(class='container')
-        h1 Admin panel
+        h1(class='text-center') Admin panel
 
-        a(href='admin/phone/create', class='btn btn-primary mb10') Create new phone
+        a(href='admin/book/create', class='btn btn-default mb10') Create new book
 
-        ul(class="list-group")
-            each phone in phones
-                li(class="list-group-item")
-                    div(class='media item-phone')
-                        div(class='media-left')
-                            img(class='media-object item-image' src='data:'+ phone.image.contentType +';base64,'+phone.image.data alt='')
-                        div(class='media-body')
-                            h4(class='media-heading') #{phone.title}
-                            p #{phone.description}
-                            a(href='/admin/phone/edit/' + phone.id, class='btn btn-default') Edit
-                            a(href='/admin/phone/delete/' + phone.id, class='btn btn-danger') Delete
+        each book in books
+            div(class='media item-book')
+                div(class='media-left')
+                    img(class='media-object item-image' src='data:'+ book.image.contentType +';base64,'+book.image.data alt='')
+                div(class='media-body')
+                    h4(class='media-heading') #{book.title}
+                    p #{book.description}
+                    a(href='/admin/book/edit/' + book.id, class='btn btn-default') Edit
+                    a(href='/admin/book/delete/' + book.id, class='btn btn-danger') Delete

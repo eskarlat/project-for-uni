@@ -1,9 +1,9 @@
-import Phone from '../models/Phone';
+import Book from '../models/Book';
 
 export function index(req, res, next) {
-    Phone.find()
-        .then(phones => {
-            res.render('admin', { phones });
+    Book.find()
+        .then(books => {
+            res.render('admin', { books });
         })
         .catch(error => {
             res.render('error', { error });
