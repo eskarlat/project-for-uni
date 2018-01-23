@@ -4,6 +4,7 @@ var express = require("express");
 var HomeController = require("../controllers/HomeController");
 var AuthController = require("../controllers/AuthController");
 var SearchController = require("../controllers/SearchController");
+var CategoryController = require("../controllers/CategoryController");
 exports.default = function (app) {
     var apiRoutes = express.Router();
     //Home routers
@@ -13,6 +14,7 @@ exports.default = function (app) {
     apiRoutes.post('/auth', AuthController.auth);
     apiRoutes.get('/logout', AuthController.logout);
     apiRoutes.get('/search', SearchController.search);
+    apiRoutes.get('/category', CategoryController.search);
     app.use('/', apiRoutes);
 };
 //# sourceMappingURL=home.js.map

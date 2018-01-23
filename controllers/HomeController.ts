@@ -1,4 +1,5 @@
 import Book from '../models/Book';
+import Category from '../models/Category';
 
 //index
 export function index(req, res, next) {
@@ -17,7 +18,10 @@ export function findById(req, res, next) {
 
     Book.findById(id)
         .then(book => {
-            res.render('detail', { book });
+            Category.findById(book.category)
+                .then(category => {
+                    res.render('book/detail', { book, category });
+                });
         })
         .catch( error => {
             res.render('error', { error });

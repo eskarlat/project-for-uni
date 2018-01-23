@@ -1,12 +1,17 @@
 import * as fs from 'fs';
 import Book from '../models/Book';
+import Category from '../models/Category';
 
 export function edit(req, res, next) {
     const id = req.params.id;
 
     Book.findById(id)
-        .then(book => {
-            res.render('edit', { book });
+        .then(book =>
+        {
+            Category.find()
+                .then(categories => {
+                    res.render('book/edit', {book, categories});
+                });
         })
         .catch(error => {
             res.render('error', { error });
@@ -14,7 +19,10 @@ export function edit(req, res, next) {
 }
 
 export function create(req, res, next) {
-    res.render('create');
+    Category.find()
+        .then(categories => {
+            res.render('book/create', {categories});
+        });
 }
 
 export function store(req, res, next) {
@@ -22,6 +30,7 @@ export function store(req, res, next) {
         title: req.body.title,
         description: req.body.description,
         price: req.body.price,
+        category: req.body.category,
     };
 
     let book = new Book(body);
@@ -40,12 +49,12 @@ export function store(req, res, next) {
 
 export function update(req, res, next) {
     const id = req.params.id;
-    console.log(id);
 
     let body = {
         title: req.body.title,
         description: req.body.description,
-        price: req.body.price
+        price: req.body.price,
+        category: req.body.category,
     };
 
     //if the file was uploaded
@@ -58,7 +67,7 @@ export function update(req, res, next) {
 
     Book.findById(id)
         .then(book => {
-            book.update(body, (err, phone) => {
+            book.update(body, () => {
                 res.redirect('/admin');
             });
         })

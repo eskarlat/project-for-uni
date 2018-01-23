@@ -1,4 +1,4 @@
-extends layout.pug
+extends ../layout
 
 block content
 
@@ -15,3 +15,5 @@ block content
                     ul(class='list-group')
                         li(class='list-group-item') #{book.description}
                         li(class='list-group-item') Price: $#{book.price}
+                        li(class='list-group-item') Category:
+                            a(href="/category?cat="+category.id) #{category.title}
