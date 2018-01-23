@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+
+    div(class='container')
+        a(href='/admin/categories', class='btn btn-default mb10') back to menu
+        h1 Create category
+        form(method='post', action='/admin/category/create', class='form')
+            div(class='form-group')
+                input(type='text', name='title', placeholder='Enter title', class='form-control')
+            div(class='form-group')
+                button(type='submit', class='btn btn-primary') Create

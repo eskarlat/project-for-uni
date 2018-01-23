@@ -1,4 +1,4 @@
-extends layout.pug
+extends ../layout
 
 block content
 
@@ -14,5 +14,9 @@ block content
                 textarea(name='description', class='form-control' placeholder='Enter description')
             div(class='form-group')
                 input(type='number', name='price', placeholder='Enter price', class='form-control')
+            div(class='form-group')
+                select(name='category', class='form-control')
+                    each category in categories
+                        option(value=category.id) #{category.title}
             div(class='form-group')
                 button(type='submit', class='btn btn-primary') Create

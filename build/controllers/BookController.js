@@ -2,11 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require("fs");
 var Book_1 = require("../models/Book");
+var Category_1 = require("../models/Category");
 function edit(req, res, next) {
     var id = req.params.id;
     Book_1.default.findById(id)
         .then(function (book) {
-        res.render('edit', { book: book });
+        Category_1.default.find()
+            .then(function (categories) {
+            res.render('book/edit', { book: book, categories: categories });
+        });
     })
         .catch(function (error) {
         res.render('error', { error: error });
@@ -14,7 +18,10 @@ function edit(req, res, next) {
 }
 exports.edit = edit;
 function create(req, res, next) {
-    res.render('create');
+    Category_1.default.find()
+        .then(function (categories) {
+        res.render('book/create', { categories: categories });
+    });
 }
 exports.create = create;
 function store(req, res, next) {
@@ -22,6 +29,7 @@ function store(req, res, next) {
         title: req.body.title,
         description: req.body.description,
         price: req.body.price,
+        category: req.body.category,
     };
     var book = new Book_1.default(body);
     book.image.data = fs.readFileSync(req.file.path, 'base64');
@@ -37,11 +45,11 @@ function store(req, res, next) {
 exports.store = store;
 function update(req, res, next) {
     var id = req.params.id;
-    console.log(id);
     var body = {
         title: req.body.title,
         description: req.body.description,
-        price: req.body.price
+        price: req.body.price,
+        category: req.body.category,
     };
     //if the file was uploaded
     if (req.file) {
@@ -52,7 +60,7 @@ function update(req, res, next) {
     }
     Book_1.default.findById(id)
         .then(function (book) {
-        book.update(body, function (err, phone) {
+        book.update(body, function () {
             res.redirect('/admin');
         });
     })
