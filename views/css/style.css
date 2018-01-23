@@ -26,3 +26,15 @@
 .image-detail {
     width: 300px;
 }
+
+.navbar-theme {
+    background-color: #fff;
+    border-radius: 0px;
+    margin-bottom: 0;
+}
+
+.head {
+    font-size: 40pt;
+    background-color: #f8f5ff;
+    text-align: center;
+}
