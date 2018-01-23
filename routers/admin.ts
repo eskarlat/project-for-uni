@@ -9,7 +9,7 @@ export default (app) => {
     const apiRoutes = express.Router();
 
     apiRoutes.use(function (req, res, next) {
-        //if(!req.session.auth) res.redirect('/');
+        if(!req.session.auth) res.redirect('/');
         next()
     });
 

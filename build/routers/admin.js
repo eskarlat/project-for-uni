@@ -8,7 +8,8 @@ var CategoryController = require("../controllers/CategoryController");
 exports.default = function (app) {
     var apiRoutes = express.Router();
     apiRoutes.use(function (req, res, next) {
-        //if(!req.session.auth) res.redirect('/');
+        if (!req.session.auth)
+            res.redirect('/');
         next();
     });
     //Admin routers
