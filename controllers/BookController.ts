@@ -1,12 +1,17 @@
 import * as fs from 'fs';
-import Phone from '../models/Phone';
+import Book from '../models/Book';
+import Category from '../models/Category';
 
 export function edit(req, res, next) {
     const id = req.params.id;
 
-    Phone.findById(id)
-        .then(phone => {
-            res.render('edit', { phone });
+    Book.findById(id)
+        .then(book =>
+        {
+            Category.find()
+                .then(categories => {
+                    res.render('book/edit', {book, categories});
+                });
         })
         .catch(error => {
             res.render('error', { error });
@@ -14,7 +19,10 @@ export function edit(req, res, next) {
 }
 
 export function create(req, res, next) {
-    res.render('create');
+    Category.find()
+        .then(categories => {
+            res.render('book/create', {categories});
+        });
 }
 
 export function store(req, res, next) {
@@ -22,14 +30,15 @@ export function store(req, res, next) {
         title: req.body.title,
         description: req.body.description,
         price: req.body.price,
+        category: req.body.category,
     };
 
-    let phone = new Phone(body);
+    let book = new Book(body);
 
-    phone.image.data = fs.readFileSync(req.file.path, 'base64');
-    phone.image.contentType = 'image/jpeg';
+    book.image.data = fs.readFileSync(req.file.path, 'base64');
+    book.image.contentType = 'image/jpeg';
 
-    phone.save()
+    book.save()
         .then(result => {
             res.redirect('/admin');
         })
@@ -45,15 +54,20 @@ export function update(req, res, next) {
         title: req.body.title,
         description: req.body.description,
         price: req.body.price,
-        image: {
+        category: req.body.category,
+    };
+
+    //if the file was uploaded
+    if (req.file) {
+        body['image'] = {
             data: fs.readFileSync(req.file.path, 'base64'),
             contentType: 'image/jpeg'
         }
-    };
+    }
 
-    Phone.findById(id)
-        .then(phone => {
-            phone.update(body, (err, phone) => {
+    Book.findById(id)
+        .then(book => {
+            book.update(body, () => {
                 res.redirect('/admin');
             });
         })
@@ -65,9 +79,9 @@ export function update(req, res, next) {
 export function destroy (req, res, next) {
     const id = req.params.id;
 
-    Phone.findById(id)
-        .then(phone => {
-            phone.remove();
+    Book.findById(id)
+        .then(book => {
+            book.remove();
             res.redirect('/admin');
         })
         .catch(error => {

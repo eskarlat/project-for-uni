@@ -1,15 +1,7 @@
 extends layout.pug
 
 block content
-
+    div(class="head") Books of University
     div(class='container')
-        each phone in phones
-            div(class='col-md-4')
-                div(class='media item-phone')
-                    div(class='media-left')
-                        a(href='/phone/'+ phone.id)
-                            img(class='media-object item-image' src='data:'+ phone.image.contentType +';base64,'+phone.image.data alt='')
-                    div(class='media-body')
-                        a(href='/phone/'+ phone.id)
-                            h4(class='media-heading') #{phone.title}
-                        p #{phone.description}
+        each book in books
+            include book/item

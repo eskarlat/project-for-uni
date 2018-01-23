@@ -4,15 +4,20 @@ block content
 
     #{msg}
 
-    div(class='container')
+    div(class='container login-form')
         div(class='panel panel-default')
             div(class='panel-heading')
                 h1(class='panel-title') Login
             div(class='panel-body')
-                form(method='post', action='/auth', class='form')
+                form(method='post', action='/auth', class='form-horizontal')
                     div(class='form-group')
-                        input(type='text', name='login', placeholder='Enter login', class='form-control')
+                        label(for="login", class="col-sm-2 control-label") Login
+                        div(class='col-sm-10')
+                            input(type='text', name='login', placeholder='Enter login', class='form-control', id='login')
                     div(class='form-group')
-                        input(type='password', name='password', placeholder='Enter password', class='form-control')
+                        label(for="password", class="col-sm-2 control-label") Password
+                        div(class='col-sm-10')
+                            input(type='password', name='password', placeholder='Enter password', class='form-control', id='password')
                     div(class='form-group')
-                        button(type='submit', class='btn btn-primary') Log in
+                        div(class='col-sm-offset-2 col-sm-10')
+                            button(type='submit', class='btn btn-primary') Log in

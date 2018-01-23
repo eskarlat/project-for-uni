@@ -1,11 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Phone_1 = require("../models/Phone");
+var Book_1 = require("../models/Book");
+var Category_1 = require("../models/Category");
 //index
 function index(req, res, next) {
-    Phone_1.default.find()
-        .then(function (phones) {
-        res.render('index', { phones: phones });
+    Book_1.default.find()
+        .then(function (books) {
+        res.render('index', { books: books });
     })
         .catch(function (error) {
         res.render('error', { error: error });
@@ -15,9 +16,12 @@ exports.index = index;
 //findByID
 function findById(req, res, next) {
     var id = req.params.id;
-    Phone_1.default.findById(id)
-        .then(function (phone) {
-        res.render('detail', { phone: phone });
+    Book_1.default.findById(id)
+        .then(function (book) {
+        Category_1.default.findById(book.category)
+            .then(function (category) {
+            res.render('book/detail', { book: book, category: category });
+        });
     })
         .catch(function (error) {
         res.render('error', { error: error });

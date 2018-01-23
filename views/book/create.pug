@@ -1,18 +1,22 @@
-extends layout.pug
+extends ../layout
 
 block content
 
     div(class='container')
-        a(href='/admin', class='btn btn-primary mb10') back to menu
+        a(href='/admin', class='btn btn-default mb10') back to menu
         h1 Create
-        form(method='post', action='/admin/phone/create', class='form', enctype="multipart/form-data")
+        form(method='post', action='/admin/book/create', class='form', enctype="multipart/form-data")
             div(class='form-group')
                 input(type='text', name='title', placeholder='Enter title', class='form-control')
             div(class='form-group')
                 input(type='file', name='image', class='form-control')
             div(class='form-group')
-                input(type='text', name='description', placeholder='Enter description', class='form-control')
+                textarea(name='description', class='form-control' placeholder='Enter description')
             div(class='form-group')
                 input(type='number', name='price', placeholder='Enter price', class='form-control')
+            div(class='form-group')
+                select(name='category', class='form-control')
+                    each category in categories
+                        option(value=category.id) #{category.title}
             div(class='form-group')
                 button(type='submit', class='btn btn-primary') Create

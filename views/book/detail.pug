@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+
+    div(class='container')
+        a(href='/' class='btn btn-default mb10') Back
+        div(class='panel panel-primary')
+            div(class='panel-heading')
+                h1(class='panel-title') #{book.title}
+            div(class='panel-body')
+                div(class='col-md-4')
+                    img(class='image-detail',src='data:'+ book.image.contentType +';base64,'+book.image.data)
+                div(class='col-md-8')
+                    h3 About book #{book.title}:
+                    ul(class='list-group')
+                        li(class='list-group-item') #{book.description}
+                        li(class='list-group-item') Price: $#{book.price}
+                        li(class='list-group-item') Category:
+                            a(href="/category?cat="+category.id) #{category.title}

@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+    div(class='container')
+        h1 Categories
+
+        a(href='/admin', class='btn btn-default mb10') back to menu
+        a(href='/admin/category/create' class='btn btn-default mb10') Create category
+
+        each category in categories
+            div(class='media')
+                div(class='media-body')
+                    h4(class='media-heading') #{category.title}
+                    a(href='/admin/category/edit/' + category.id, class='btn btn-default') Edit
+                    a(href='/admin/category/delete/' + category.id, class='btn btn-danger') Delete
