@@ -37,15 +37,19 @@ function store(req, res, next) {
 exports.store = store;
 function update(req, res, next) {
     var id = req.params.id;
+    console.log(id);
     var body = {
         title: req.body.title,
         description: req.body.description,
-        price: req.body.price,
-        image: {
+        price: req.body.price
+    };
+    //if the file was uploaded
+    if (req.file) {
+        body['image'] = {
             data: fs.readFileSync(req.file.path, 'base64'),
             contentType: 'image/jpeg'
-        }
-    };
+        };
+    }
     Book_1.default.findById(id)
         .then(function (book) {
         book.update(body, function (err, phone) {

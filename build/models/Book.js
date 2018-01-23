@@ -24,5 +24,8 @@ var BookSchema = new Schema({
         required: true
     }
 });
+BookSchema.statics.findByTitle = function (title, cb) {
+    return this.find({ title: new RegExp('^' + title, 'g') }, cb);
+};
 exports.default = mongoose.model('Book', BookSchema);
 //# sourceMappingURL=Book.js.map

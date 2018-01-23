@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var HomeController = require("../controllers/HomeController");
 var AuthController = require("../controllers/AuthController");
+var SearchController = require("../controllers/SearchController");
 exports.default = function (app) {
     var apiRoutes = express.Router();
     //Home routers
@@ -11,6 +12,7 @@ exports.default = function (app) {
     apiRoutes.get('/login', AuthController.login);
     apiRoutes.post('/auth', AuthController.auth);
     apiRoutes.get('/logout', AuthController.logout);
+    apiRoutes.get('/search', SearchController.search);
     app.use('/', apiRoutes);
 };
 //# sourceMappingURL=home.js.map

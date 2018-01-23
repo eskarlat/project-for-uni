@@ -3,11 +3,14 @@ extends layout.pug
 block content
 
     div(class='container')
-        h1 Books of University
+        h1 Search Books (#{queryTitle})
         hr
         form(method="GET", action="/search", class="form-inline")
             div(class="form-group")
                 input(class="form-control", placeholder="Search..." name="q")
             button(type="submit", class="btn btn-default") Search
-        each book in books
-            include itemBook.pug
+        if books
+            p(class="text-danger") Your search #{queryTitle} did not match any books.
+        else
+            each book in books
+                include itemBook.pug
