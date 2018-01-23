@@ -40,16 +40,21 @@ export function store(req, res, next) {
 
 export function update(req, res, next) {
     const id = req.params.id;
+    console.log(id);
 
     let body = {
         title: req.body.title,
         description: req.body.description,
-        price: req.body.price,
-        image: {
+        price: req.body.price
+    };
+
+    //if the file was uploaded
+    if (req.file) {
+        body['image'] = {
             data: fs.readFileSync(req.file.path, 'base64'),
             contentType: 'image/jpeg'
         }
-    };
+    }
 
     Book.findById(id)
         .then(book => {

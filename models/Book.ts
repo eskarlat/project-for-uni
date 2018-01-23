@@ -24,4 +24,8 @@ const BookSchema = new Schema({
     }
 });
 
+BookSchema.statics.findByTitle = function(title, cb) {
+    return this.find({ title: new RegExp('^'+title, 'g') }, cb);
+};
+
 export default mongoose.model('Book', BookSchema);

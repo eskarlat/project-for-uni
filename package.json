@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "server.js",
   "license": "MIT",
+  "scripts": {
+    "start": "nodemon ./build/server.js"
+  },
   "dependencies": {
     "body-parser": "^1.18.2",
     "bootstrap": "^3.3.7",
